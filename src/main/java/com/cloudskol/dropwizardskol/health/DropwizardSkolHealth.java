@@ -17,7 +17,7 @@ public class DropwizardSkolHealth extends HealthCheck {
     protected Result check() throws Exception {
         final String formattedString = String.format(value, "CloudSkol");
         if (!formattedString.contains("CloudSkol")) {
-            throw new Exception("DropwizardSkol application is NOT healthy");
+            return Result.unhealthy("DropwizardSkol application is NOT healthy...");
         }
 
         return Result.healthy();
