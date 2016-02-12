@@ -1,5 +1,6 @@
 package com.cloudskol.dropwizardskol;
 
+import com.cloudskol.dropwizardskol.health.DropwizardSkolHealth;
 import com.cloudskol.dropwizardskol.resource.BookResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
@@ -8,6 +9,8 @@ import io.dropwizard.setup.Environment;
  * Created by tham on 12-02-2016.
  */
 public class DropwizardSkolApplication extends Application<DropwizardSkolConfiguration> {
+    private static final String value = "Hello %s";
+
     public static void main(String[] args) throws Exception {
         new DropwizardSkolApplication().run(args);
     }
@@ -17,6 +20,11 @@ public class DropwizardSkolApplication extends Application<DropwizardSkolConfigu
                     Environment environment) throws Exception {
         System.out.println("My Application is started");
 
+        //Register health check
+        final DropwizardSkolHealth dropwizardSkolHealth = new DropwizardSkolHealth(value);
+        environment.healthChecks().register("Health", dropwizardSkolHealth);
+
+        //Register resource
         BookResource bookResource = new BookResource();
         environment.jersey().register(bookResource);
     }
