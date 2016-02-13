@@ -26,4 +26,10 @@ public class BookResource {
         books.add(new Book("1465438165", "Star Wars: The Force Awakens Visual Dictionary"));
         return books;
     }
+
+    @GET
+    @Path("{isbn}")
+    public Book getBook(String isbn) {
+        return new Book("1416562605", "he White Tiger: A Novel");
+    }
 }
