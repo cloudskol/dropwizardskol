@@ -1,6 +1,7 @@
 package com.cloudskol.dropwizardskol.resource;
 
 import com.cloudskol.dropwizardskol.model.Book;
+import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Timed;
 
 import javax.ws.rs.GET;
@@ -19,7 +20,7 @@ import java.util.List;
 public class BookResource {
 
     @GET
-    @Timed
+    @Metered
     public List<Book> getBooks() {
         List<Book> books = new ArrayList<Book>(2);
         books.add(new Book("1416562605", "he White Tiger: A Novel"));
@@ -29,6 +30,7 @@ public class BookResource {
 
     @GET
     @Path("{isbn}")
+    @Metered
     public Book getBook(String isbn) {
         return new Book("1416562605", "he White Tiger: A Novel");
     }

@@ -3,6 +3,7 @@ package com.cloudskol.dropwizardskol;
 import com.cloudskol.dropwizardskol.health.DropwizardSkolHealth;
 import com.cloudskol.dropwizardskol.managed.ElasticClientManager;
 import com.cloudskol.dropwizardskol.resource.BookResource;
+import com.cloudskol.dropwizardskol.task.RebootElasticTask;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -25,11 +26,13 @@ public class DropwizardSkolApplication extends Application<DropwizardSkolConfigu
     @Override
     public void run(DropwizardSkolConfiguration dropwizardSkolConfiguration,
                     Environment environment) throws Exception {
-        System.out.println("My Application is started");
 
         //Register health check
         final DropwizardSkolHealth dropwizardSkolHealth = new DropwizardSkolHealth(value);
         environment.healthChecks().register("Health", dropwizardSkolHealth);
+
+        //Register tasks
+        environment.admin().addTask(new RebootElasticTask("reboot"));
 
         //Register managed objects
         environment.lifecycle().manage(new ElasticClientManager());
