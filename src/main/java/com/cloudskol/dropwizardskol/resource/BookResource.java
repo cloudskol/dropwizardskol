@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * Created by tham on 12-02-2016.
+ *
+ * Simple Book resource file
  */
 
 @Path("/books")
