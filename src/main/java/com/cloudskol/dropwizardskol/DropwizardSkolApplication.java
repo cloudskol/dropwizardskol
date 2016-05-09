@@ -9,7 +9,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
 /**
- * Created by tham on 12-02-2016.
+ * @author tham 
  */
 public class DropwizardSkolApplication extends Application<DropwizardSkolConfiguration> {
     private static final String value = "Hello %s";

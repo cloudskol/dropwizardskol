@@ -7,7 +7,7 @@ import io.dropwizard.servlets.tasks.Task;
 import java.io.PrintWriter;
 
 /**
- * @Author tham
+ * @author tham
  */
 
 public class RebootElasticTask extends Task {

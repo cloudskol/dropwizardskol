@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by tham on 12-02-2016.
+ * @author tham
  *
  * Simple Book resource file
  */
