@@ -3,11 +3,14 @@ package com.cloudskol.dropwizardskol.resource;
 import com.cloudskol.dropwizardskol.model.Book;
 import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Timed;
+import io.dropwizard.jersey.PATCH;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +36,7 @@ public class BookResource {
     @GET
     @Path("{isbn}")
     @Metered
-    public Book getBook(String isbn) {
+    public Book getBook(@PathParam("isbn") String isbn) {
         return new Book("1416562605", "he White Tiger: A Novel");
     }
 }
