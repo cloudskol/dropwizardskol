@@ -5,11 +5,12 @@ import com.cloudskol.dropwizardskol.managed.ElasticClientManager;
 import com.cloudskol.dropwizardskol.resource.BookResource;
 import com.cloudskol.dropwizardskol.task.RebootElasticTask;
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
 /**
- * @author tham 
+ * @author tham
  */
 public class DropwizardSkolApplication extends Application<DropwizardSkolConfiguration> {
     private static final String value = "Hello %s";
@@ -21,6 +22,8 @@ public class DropwizardSkolApplication extends Application<DropwizardSkolConfigu
     @Override
     public void initialize(Bootstrap<DropwizardSkolConfiguration> bootstrap) {
         super.initialize(bootstrap);
+
+        bootstrap.addBundle(new AssetsBundle("/assets", "/view", "index.html"));
     }
 
     @Override
@@ -38,6 +41,7 @@ public class DropwizardSkolApplication extends Application<DropwizardSkolConfigu
         environment.lifecycle().manage(new ElasticClientManager());
 
         //Register resource
+        environment.jersey().setUrlPattern("/dskol/api/*");
         BookResource bookResource = new BookResource();
         environment.jersey().register(bookResource);
     }

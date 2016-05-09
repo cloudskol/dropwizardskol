@@ -1,1 +1,4 @@
 name: Dropwizardskol
+
+server:
+  rootPath: /dskol/api/v1/
