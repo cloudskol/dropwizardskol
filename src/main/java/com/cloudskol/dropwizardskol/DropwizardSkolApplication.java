@@ -23,7 +23,8 @@ public class DropwizardSkolApplication extends Application<DropwizardSkolConfigu
     public void initialize(Bootstrap<DropwizardSkolConfiguration> bootstrap) {
         super.initialize(bootstrap);
 
-        bootstrap.addBundle(new AssetsBundle("/assets", "/view", "index.html"));
+        bootstrap.addBundle(new AssetsBundle("/assets", "/dskol", "index.html"));
+        bootstrap.addBundle(new AssetsBundle("/assets/css", "/css", null, "css"));
     }
 
     @Override
