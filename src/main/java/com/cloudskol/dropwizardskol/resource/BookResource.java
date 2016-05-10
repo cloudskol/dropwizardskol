@@ -4,11 +4,10 @@ import com.cloudskol.dropwizardskol.model.Book;
 import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.jersey.PATCH;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 import java.util.ArrayList;
@@ -23,9 +22,10 @@ import java.util.List;
 @Path("/books")
 @Produces(MediaType.APPLICATION_JSON)
 public class BookResource {
+    private static final Logger logger = LoggerFactory.getLogger(BookResource.class);
 
     @GET
-    @Metered
+    @Timed
     public List<Book> getBooks() {
         List<Book> books = new ArrayList<Book>(2);
         books.add(new Book("1416562605", "he White Tiger: A Novel"));
@@ -35,8 +35,14 @@ public class BookResource {
 
     @GET
     @Path("{isbn}")
-    @Metered
+    @Timed
     public Book getBook(@PathParam("isbn") String isbn) {
         return new Book("1416562605", "he White Tiger: A Novel");
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void createBook(Book book) {
+        logger.info("Enters createBook() {} > {}", book.getIsbn(), book.getTitle());
     }
 }
