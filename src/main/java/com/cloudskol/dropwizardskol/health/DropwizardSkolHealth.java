@@ -4,6 +4,8 @@ import com.codahale.metrics.health.HealthCheck;
 
 /**
  * @author tham
+ *
+ * Health check for our application
  */
 
 public class DropwizardSkolHealth extends HealthCheck {
@@ -20,6 +22,6 @@ public class DropwizardSkolHealth extends HealthCheck {
             return Result.unhealthy("DropwizardSkol application is NOT healthy...");
         }
 
-        return Result.healthy();
+        return Result.healthy("DropwizardSkol application is healthy");
     }
 }
