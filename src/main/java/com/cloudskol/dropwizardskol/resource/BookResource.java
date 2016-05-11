@@ -1,15 +1,14 @@
 package com.cloudskol.dropwizardskol.resource;
 
+import com.cloudskol.dropwizardskol.core.DropwizardSkolException;
 import com.cloudskol.dropwizardskol.model.Book;
-import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Timed;
-import io.dropwizard.jersey.PATCH;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,5 +43,14 @@ public class BookResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void createBook(Book book) {
         logger.info("Enters createBook() {} > {}", book.getIsbn(), book.getTitle());
+    }
+
+    @DELETE
+    @Path("{isbn}")
+    public Response delete(@PathParam("isbn") String isbn) {
+        logger.info("Enters delete()");
+
+        final DropwizardSkolException exception = new DropwizardSkolException("Book with mentioned isbn is NOT found");
+        return Response.status(Response.Status.NOT_FOUND).entity(exception).build();
     }
 }
