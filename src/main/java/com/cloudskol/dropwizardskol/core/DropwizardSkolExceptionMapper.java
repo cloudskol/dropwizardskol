@@ -1,13 +1,20 @@
 package com.cloudskol.dropwizardskol.core;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
 /**
  * @author tham
  */
 
-public class DropwizardSkolExceptionMapper implements javax.ws.rs.ext.ExceptionMapper<DropwizardSkolException> {
+@Provider
+public class DropwizardSkolExceptionMapper implements ExceptionMapper<DropwizardSkolException> {
     public Response toResponse(DropwizardSkolException exception) {
-        return null;
+        return Response.status(exception.getCode())
+                .entity(exception.getMessage())
+                .type(MediaType.TEXT_PLAIN)
+                .build();
     }
 }

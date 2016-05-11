@@ -9,6 +9,10 @@ package com.cloudskol.dropwizardskol.core;
 public class DropwizardSkolException extends Throwable {
     private int code;
 
+    public DropwizardSkolException() {
+        this(500);
+    }
+
     public DropwizardSkolException(int code) {
         this(code, "Error while processing the request", null);
     }
@@ -20,5 +24,9 @@ public class DropwizardSkolException extends Throwable {
     public DropwizardSkolException(int code, String message, Throwable throwable) {
         super(message, throwable);
         this.code = code;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

@@ -47,10 +47,14 @@ public class BookResource {
 
     @DELETE
     @Path("{isbn}")
-    public Response delete(@PathParam("isbn") String isbn) {
+    public Response delete(@PathParam("isbn") String isbn) throws DropwizardSkolException {
         logger.info("Enters delete()");
 
-        final DropwizardSkolException exception = new DropwizardSkolException("Book with mentioned isbn is NOT found");
-        return Response.status(Response.Status.NOT_FOUND).entity(exception).build();
+        if (!"1416562605".equals(isbn)) {
+            final DropwizardSkolException exception = new DropwizardSkolException(404, "Book with mentioned isbn is NOT found");
+            throw exception;
+        }
+
+        return Response.ok("Book is deleted successfully").build();
     }
 }
