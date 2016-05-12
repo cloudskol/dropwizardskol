@@ -7,6 +7,8 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * @author tham
+ *
+ * Represents the exception mapper
  */
 
 @Provider
