@@ -12,6 +12,10 @@ import io.dropwizard.setup.Environment;
 
 /**
  * @author tham
+ *
+ * Main entry point for our application
+ *
+ * Resources, health check and providers will be registered here
  */
 public class DropwizardSkolApplication extends Application<DropwizardSkolConfiguration> {
     private static final String value = "Hello %s";
