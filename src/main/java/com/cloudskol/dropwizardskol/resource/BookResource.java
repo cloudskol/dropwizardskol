@@ -27,8 +27,8 @@ public class BookResource {
     @Timed
     public List<Book> getBooks() {
         List<Book> books = new ArrayList<Book>(2);
-        books.add(new Book("1416562605", "he White Tiger: A Novel"));
-        books.add(new Book("1465438165", "Star Wars: The Force Awakens Visual Dictionary"));
+        books.add(new Book("1", "1416562605", "he White Tiger: A Novel"));
+        books.add(new Book("2", "1465438165", "Star Wars: The Force Awakens Visual Dictionary"));
         return books;
     }
 
@@ -36,7 +36,7 @@ public class BookResource {
     @Path("{isbn}")
     @Timed
     public Book getBook(@PathParam("isbn") String isbn) {
-        return new Book("1416562605", "he White Tiger: A Novel");
+        return new Book("1", "1416562605", "he White Tiger: A Novel");
     }
 
     @POST

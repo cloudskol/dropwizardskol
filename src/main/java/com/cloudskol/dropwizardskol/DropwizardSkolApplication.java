@@ -3,6 +3,7 @@ package com.cloudskol.dropwizardskol;
 import com.cloudskol.dropwizardskol.core.DropwizardSkolExceptionMapper;
 import com.cloudskol.dropwizardskol.health.DropwizardSkolHealth;
 import com.cloudskol.dropwizardskol.managed.ElasticClientManager;
+import com.cloudskol.dropwizardskol.resource.BookAPI;
 import com.cloudskol.dropwizardskol.resource.BookResource;
 import com.cloudskol.dropwizardskol.task.RebootElasticTask;
 import io.dropwizard.Application;
@@ -48,8 +49,11 @@ public class DropwizardSkolApplication extends Application<DropwizardSkolConfigu
 
         //Register resource
         environment.jersey().setUrlPattern("/dskol/api/*");
-        BookResource bookResource = new BookResource();
-        environment.jersey().register(bookResource);
         environment.jersey().register(new DropwizardSkolExceptionMapper());
+
+//        BookResource bookResource = new BookResource();
+//        environment.jersey().register(bookResource);
+
+        environment.jersey().register(new BookAPI());
     }
 }

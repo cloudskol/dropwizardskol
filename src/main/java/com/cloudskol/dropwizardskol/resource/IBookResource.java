@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * @author tham
+ *
+ * Book API interface where all the JAX-RS annotation will be defined
  */
 
 @Path("/books")
