@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author tham
  *
- * Simple Book resource file
+ * Book resource implementation
  */
 
 @Path("/books")
@@ -51,7 +51,8 @@ public class BookResource {
         logger.info("Enters delete()");
 
         if (!"1416562605".equals(isbn)) {
-            final DropwizardSkolException exception = new DropwizardSkolException(404, "Book with mentioned isbn is NOT found");
+            final DropwizardSkolException exception = new DropwizardSkolException(404,
+                    "Book with mentioned isbn is NOT found");
             throw exception;
         }
 
