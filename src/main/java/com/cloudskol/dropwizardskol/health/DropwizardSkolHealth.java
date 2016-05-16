@@ -6,6 +6,7 @@ import com.codahale.metrics.health.HealthCheck;
  * @author tham
  *
  * Health check for our application
+ * Will simply check the given value is parsed successfully or not!
  */
 
 public class DropwizardSkolHealth extends HealthCheck {
