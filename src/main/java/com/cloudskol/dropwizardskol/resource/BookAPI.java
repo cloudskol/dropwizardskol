@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * @author tham
+ *
+ * Resource file for book API
  */
 
 public class BookAPI implements IBookResource {
